@@ -1,0 +1,40 @@
+nav {
+    background-color: gainsboro;
+    display: flex;
+    padding: 1% 6%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav img {
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links ul li {
+    padding-left: 10px;
+}
+
+.nav-links ul li .link {
+    text-decoration: none;
+}
+
+.nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: black;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.nav-links ul li:hover::after {
+    width: 100%;
+}
