@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import tasks from "./routes/tasks.js";
+import signUp from "./routes/signUp.js";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/tasks", tasks);
+app.use("/api/signup", signUp);
 
 //create an end point
 app.get("/", (req, res) => {
