@@ -1,8 +1,7 @@
 // joi validation
 // does user exist?
-// create new user
-// hash password
-// save user
+// password validate
+// JWT => send to client
 
 import express from "express";
 import Joi from "Joi";
@@ -16,7 +15,6 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   // joi validation
   const schema = Joi.object({
-    name: Joi.string().min(3).max(30).required(),
     email: Joi.string().min(3).max(200).email().required(),
     password: Joi.string().min(6).max(200).required(),
   });
@@ -27,24 +25,17 @@ router.post("/", async (req, res) => {
   try {
     // does user exist?
     let user = await User.findOne({ email: req.body.email });
-    if (user) return res.status(400).send("User already exists...");
+    if (!user) return res.status(400).send("Invalid email or password...");
 
-    // create new user
-    const { name, email, password } = req.body;
-    user = new User({
-      name,
-      email,
-      password,
-    });
+    // password validate
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!validPassword)
+      return res.status(400).send("Invalid email or password...");
 
-    // hash password
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(user.password, salt);
-
-    // save user
-    await user.save();
-
-    // automatically sign in part 
+    // JWT => send to client
     const jwtSecretKey = process.env.SECRET_KEY;
     const token = jwt.sign(
       { _id: user._id, name: user.name, email: user.email },
@@ -52,7 +43,7 @@ router.post("/", async (req, res) => {
     );
 
     res.send(token);
-
+    
   } catch (error) {
     res.status(500).send(error.message);
     console.log(error.message);

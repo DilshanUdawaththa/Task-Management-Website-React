@@ -5,6 +5,7 @@ import cors from "cors";
 
 import tasks from "./routes/tasks.js";
 import signUp from "./routes/signUp.js";
+import signIn from "./routes/signIn.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use("/api/tasks", tasks);
 app.use("/api/signup", signUp);
+app.use("/api/signin", signIn);
 
 //create an end point
 app.get("/", (req, res) => {
