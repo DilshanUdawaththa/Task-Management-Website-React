@@ -2,13 +2,16 @@ import express from "express";
 import Joi from "Joi";
 
 import Task from "../models/task.js";
+import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
     const tasks = await Task.find().sort({ date: 1 });
     res.send(tasks);
+    // display logged username
+    console.log(req.user.name);
   } catch (error) {
     res.status(500).send(error.message);
     console.log(error.message);
