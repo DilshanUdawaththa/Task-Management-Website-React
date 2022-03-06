@@ -1,26 +1,20 @@
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ArticlesList from './pages/ArticlesList';
-import ArticlePage from './pages/ArticlePage';
-import NavBar from './NavBar/NavBar';
-
-import './App.css';
+import Tasks from "./components/tasks/Tasks";
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
+import NavBar from "./components/navBar/NavBar";
 
 function App() {
   return (
-    <Router> 
-      <NavBar/>
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<HomePage/>}/>
-          <Route path="about" element={<AboutPage/>}/>
-          <Route path="articles-list" element={<ArticlesList/>}/>
-          <Route path="article" element={<ArticlePage/>}/>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+          <Route path="/" element={<Tasks/>}/>
+          <Route path="signin" element={<SignIn/>}/>
+          <Route path="signup" element={<SignUp/>}/>
         </Routes>
-      </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
