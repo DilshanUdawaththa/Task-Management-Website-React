@@ -3,19 +3,22 @@ import React from "react";
 const AddTask = () => {
   return (
     <>
-      <form onSubmit>
+      <form>
         <div className="form-group">
-          <label htmlFor="title">New Task</label>
+          <label htmlFor="task">Add New task</label>
           <input
             type="text"
             className="form-control"
-            id="title"
-            name="title"
-            placeholder="Enter your task here"
+            id="task"
+            name="task"
+            placeholder="email here"
+            // onChange={formik.handleChange}
+            // onBlur={formik.handleBlur}
+            // value={formik.values.task}
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Submit
+          Add
         </button>
       </form>
     </>

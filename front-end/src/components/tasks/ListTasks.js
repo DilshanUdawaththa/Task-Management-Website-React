@@ -1,13 +1,14 @@
-import React from 'react';
-import Task from './Task';
+import React from "react";
+import Task from "./Task";
 
 const ListTasks = () => {
-    return (
-        <>
-        <h2>ListTasks</h2>
-        <Task/>
-        </>
-      );
-}
- 
+  return (
+    <>
+      <div className="mt-4">
+        <Task />
+      </div>
+    </>
+  );
+};
+
 export default ListTasks;
