@@ -1,24 +1,19 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { logout } from "../../state/actions/authActions";
 
 const NavBar = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  // const token = useSelector((state) => state?.token);
   const token = localStorage.getItem("token");
-
-  console.log("nav bar",token);
 
   const logoutUser = () => {
     dispatch(logout());
     localStorage.setItem("token", "");
     navigate("/");
   };
-
 
   return (
     <>

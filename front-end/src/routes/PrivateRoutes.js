@@ -5,9 +5,8 @@ const PrivateRoute = ({ children }) => {
   let location = useLocation();
 
   let token = localStorage.getItem("token");
-  console.log(token);
 
-  const isAuthenticated = token !== "" ? true : false;
+  const isAuthenticated = token !== null ? true : false;
 
   if (!isAuthenticated) {
     return <Navigate to="/" state={{ from: location }} />;

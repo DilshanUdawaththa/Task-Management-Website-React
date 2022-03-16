@@ -38,12 +38,14 @@ export const registerUserSuccess = (values) => {
     }    
 }
 
-export const registerUserFailed = (error) => {
+export const registerUserFailed = (values) => {
+    alert(values);
     return {
       type: REGISTER_USER_FAILED,
-      payload: { error }
+      payload: { values }
     }
 }
+
   
 export const registerUserCancel = () => {
     return {
@@ -66,10 +68,11 @@ export const loginUserSuccess = (values) => {
     }    
 }
 
-export const loginUserFailed = (error) => {
+export const loginUserFailed = (values) => {
+    alert(values);
     return {
       type: LOGIN_USER_FAILED,
-      payload: { error }
+      payload: { values }
     }
 }
   
@@ -120,9 +123,3 @@ export const logout = () => {
         type: USER_LOGOUT
     }
 }
-
-// export const removeAuth = () => {
-//     return {
-//         type: USER_LOGOUT_SUCCESS
-//     }
-// }

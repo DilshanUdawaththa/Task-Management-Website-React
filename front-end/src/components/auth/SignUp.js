@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import { registerUser } from "../../state/actions/authActions";
 
 function SignUp() {
@@ -9,12 +9,12 @@ function SignUp() {
   const initialValues = {
     name: "",
     email: "",
-    password: ""
+    password: "",
   };
 
   const onSubmit = async (values, { resetForm }) => {
-    console.log(values);
     await dispatch(registerUser(values));
+    resetForm();
   };
 
   const validate = (values) => {

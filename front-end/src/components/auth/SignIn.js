@@ -6,31 +6,25 @@ import { loginUser } from "../../state/actions/authActions";
 import { useSelector } from "react-redux";
 
 function SignIn() {
-
   const dispatch = useDispatch();
   let navigate = useNavigate();
-  
 
-    let response = useSelector(state => state);
-    // const response = localStorage.getItem("token");
-  // console.log(error , message, token)
+  let response = useSelector((state) => state);
 
   useEffect(() => {
-    // const response = localStorage.getItem("token");
-
     if (response?.token !== undefined) {
-      navigate('/tasks')
-      console.log("res");
+      navigate("/tasks");
     }
-  })
+  });
 
   const initialValues = {
-          email: "",
-          password: "",
+    email: "",
+    password: "",
   };
 
   const onSubmit = async (values, { resetForm }) => {
     await dispatch(loginUser(values));
+    resetForm();
   };
 
   const validate = (values) => {
@@ -88,9 +82,7 @@ function SignIn() {
           />
           <div className="small text-danger">
             {formik.errors.password ? (
-              <div>
-                {formik.touched.password && formik.errors.password}
-              </div>
+              <div>{formik.touched.password && formik.errors.password}</div>
             ) : null}
           </div>
         </div>
