@@ -5,7 +5,7 @@ const PrivateRoute = ({ children }) => {
   let location = useLocation();
 
   let token = localStorage.getItem("token");
-  console.log(token);
+  // console.log(token);
 
   const isAuthenticated = token !== "" ? true : false;
 

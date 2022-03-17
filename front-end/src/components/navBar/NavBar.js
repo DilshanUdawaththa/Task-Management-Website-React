@@ -1,17 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { logout } from "../../state/actions/authActions";
 
 const NavBar = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  // const token = useSelector((state) => state?.token);
   const token = localStorage.getItem("token");
-
-  console.log("nav bar",token);
 
   const logoutUser = () => {
     dispatch(logout());
@@ -19,13 +15,12 @@ const NavBar = () => {
     navigate("/");
   };
 
-
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
         <div>
           <Link className="nav-link" to="/">
-            <span className="navbar-brand" href="#">
+            <span className="navbar-brand">
               Sana Task Management APP
             </span>
           </Link>
@@ -42,12 +37,6 @@ const NavBar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-        </div>
-
-        <div>
-          <ul className="navbar-nav">
-            {/* <li className="nav-item">Logged in as Dilshan</li> */}
-          </ul>
         </div>
 
         <div>

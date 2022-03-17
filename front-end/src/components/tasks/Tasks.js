@@ -1,25 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import AddTask from "./AddTask";
 import ListTasks from "./ListTasks";
-// import { useDispatch } from "react-redux";
 // import { useSelector } from "react-redux";
-// import { getUserData } from "../../state/actions/authActions";
 
 const Tasks = () => {
-  // const dispatch = useDispatch();
+  // const result = useSelector((state) => state)
+  // const userData = result?.token;
 
-  // const userData = useSelector((state) => state?.user)
-  // console.log(userData);
-  
-  // useEffect(() => {
-  //   dispatch(getUserData());
-  // }, []);
+  // const token = localStorage.getItem("token");
+  // console.log(result);
 
   return (
     <>
       <div className="container col-sm-8 mt-4">
-        {/* <h4>Hello {userData?.email}</h4> 
-        <h6>Your Username is : {userData?.email}</h6> */}
+        {/* {result.data.user} */}
         <AddTask />
         <ListTasks />
       </div>

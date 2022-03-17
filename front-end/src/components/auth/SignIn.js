@@ -6,31 +6,25 @@ import { loginUser } from "../../state/actions/authActions";
 import { useSelector } from "react-redux";
 
 function SignIn() {
-
   const dispatch = useDispatch();
   let navigate = useNavigate();
-  
 
-    let response = useSelector(state => state);
-    // const response = localStorage.getItem("token");
-  // console.log(error , message, token)
+  let response = useSelector((state) => state);
 
   useEffect(() => {
-    // const response = localStorage.getItem("token");
-
     if (response?.token !== undefined) {
-      navigate('/tasks')
-      console.log("res");
+      navigate("/tasks");
     }
-  })
+  });
 
   const initialValues = {
-          email: "",
-          password: "",
+    email: "",
+    password: "",
   };
 
   const onSubmit = async (values, { resetForm }) => {
     await dispatch(loginUser(values));
+    resetForm();
   };
 
   const validate = (values) => {
@@ -55,6 +49,10 @@ function SignIn() {
 
   return (
     <div className="container col-sm-8 mt-4">
+      <p style={{ color: "red" }}>
+        {response && response?.signInError && `${response?.signInError}`}
+      </p>
+
       <form onSubmit={formik.handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
@@ -88,9 +86,7 @@ function SignIn() {
           />
           <div className="small text-danger">
             {formik.errors.password ? (
-              <div>
-                {formik.touched.password && formik.errors.password}
-              </div>
+              <div>{formik.touched.password && formik.errors.password}</div>
             ) : null}
           </div>
         </div>

@@ -1,20 +1,24 @@
 import { useFormik } from "formik";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../state/actions/authActions";
 
 function SignUp() {
+  let response = useSelector((state) => state);
+  // console.log("from signup", response);
+
   const dispatch = useDispatch();
 
   const initialValues = {
     name: "",
     email: "",
-    password: ""
+    password: "",
   };
 
   const onSubmit = async (values, { resetForm }) => {
     console.log(values);
     await dispatch(registerUser(values));
+    resetForm();
   };
 
   const validate = (values) => {
@@ -43,6 +47,8 @@ function SignUp() {
 
   return (
     <div className="container col-sm-8 mt-4">
+      <p style={{color:"red"}}>{response && response?.signUpError && `${response?.signUpError}`}</p>
+
       <form onSubmit={formik.handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>

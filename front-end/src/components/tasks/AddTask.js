@@ -3,7 +3,7 @@ import React from "react";
 const AddTask = () => {
   return (
     <>
-      <form>
+      {/* <form> */}
         <div className="form-group">
           <label htmlFor="task">Add New task</label>
           <input
@@ -20,7 +20,7 @@ const AddTask = () => {
         <button type="submit" className="btn btn-primary">
           Add
         </button>
-      </form>
+      {/* </form> */}
     </>
   );
 };
