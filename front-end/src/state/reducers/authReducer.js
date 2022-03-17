@@ -1,3 +1,5 @@
+import jwtDecode from "jwt-decode";
+
 import {
   GET_USER_SUCCESS,
   LOGIN_USER,
@@ -12,9 +14,12 @@ import {
 const initialState = {
   isLoading: false,
   token: undefined,
-  user: undefined,
-  signInError:"",
-  signUpError:"",
+  user: "",
+  signInError: "",
+  signUpError: "",
+  name: null,
+  email: null,
+  _id: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -30,7 +35,7 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
       };
     case REGISTER_USER_FAILED:
-        // console.log("from reducer",action.payload);
+      // console.log("from reducer",action.payload);
       return {
         ...state,
         signUpError: action.payload.values,
@@ -48,26 +53,31 @@ const authReducer = (state = initialState, action) => {
         error: action.payload.values.data.error,
         message: action.payload.values.data.message,
       };
-      case LOGIN_USER_FAILED:
-        // console.log("from reducer",action.payload);
+    case LOGIN_USER_FAILED:
+      // console.log("from reducer",action.payload);
       return {
         ...state,
         signInError: action.payload.values,
       };
+
     case GET_USER_SUCCESS:
+      const user = jwtDecode(localStorage.getItem("token"));
       return {
         ...state,
-        isLoading: false,
         token: localStorage.getItem("token"),
-        error: action.payload.values.data.error,
-        message: action.payload.values.data.message,
-        user: action.payload.values.data.user,
+        name: user.name,
+        email: user.email,
+        _id: user._id,
       };
+
     case USER_LOGOUT:
       return {
         isLoading: false,
         token: undefined,
         user: undefined,
+        name: undefined,
+        email: undefined,
+        _id: undefined,
       };
     default:
       break;

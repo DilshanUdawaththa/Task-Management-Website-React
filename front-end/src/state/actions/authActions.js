@@ -46,12 +46,6 @@ export const registerUserFailed = async (values) => {
   };
 };
 
-export const registerUserCancel = () => {
-  return {
-    type: REGISTER_USER_CANCEL,
-  };
-};
-
 // login user
 export const loginUser = (values) => {
   return {
@@ -90,30 +84,15 @@ export const userAccessToken = (values) => {
 };
 
 // get user data
-export const getUserData = () => {
+export const getUserData =  () => {
   return {
     type: GET_USER_DATA,
   };
 };
 
-export const getUserDataSuccess = (values) => {
-  // console.log("get",values);
+export const getUserDataSuccess =  () => {
   return {
     type: GET_USER_SUCCESS,
-    payload: { values },
-  };
-};
-
-export const getUserDataFailed = (error) => {
-  return {
-    type: GET_USER_FAILED,
-    payload: { error },
-  };
-};
-
-export const getUserDataCancel = () => {
-  return {
-    type: GET_USER_CANCEL,
   };
 };
 
