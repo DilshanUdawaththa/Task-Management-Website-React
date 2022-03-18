@@ -5,7 +5,6 @@ import { registerUser } from "../../state/actions/authActions";
 
 function SignUp() {
   let response = useSelector((state) => state);
-  // console.log("from signup", response);
 
   const dispatch = useDispatch();
 
@@ -47,7 +46,8 @@ function SignUp() {
 
   return (
     <div className="container col-sm-8 mt-4">
-      <p style={{color:"red"}}>{response && response?.signUpError && `${response?.signUpError}`}</p>
+      {/* <p style={{color:"red"}}>{response && response?.signUpError && `${response?.signUpError}`}</p> */}
+      <p style={{color:"red"}}>{response && response?.signUpMessage && `${response?.signUpMessage}`}</p>
 
       <form onSubmit={formik.handleSubmit}>
         <div className="form-group">

@@ -37,8 +37,6 @@ router.post("/", async (req, res) => {
       password,
     });
 
-    if (user) return res.status(200).send("User created");
-
     // hash password
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
@@ -46,7 +44,7 @@ router.post("/", async (req, res) => {
     // save user
     await user.save();
 
-    // automatically sign in part 
+    // automatically sign in part
     const jwtSecretKey = process.env.SECRET_KEY;
     const token = jwt.sign(
       { _id: user._id, name: user.name, email: user.email },
@@ -54,7 +52,6 @@ router.post("/", async (req, res) => {
     );
 
     res.send(token);
-
   } catch (error) {
     res.status(500).send(error.message);
     console.log(error.message);

@@ -17,6 +17,7 @@ const initialState = {
   user: "",
   signInError: "",
   signUpError: "",
+  signUpMessage: "",
   name: null,
   email: null,
   _id: null,
@@ -33,12 +34,14 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        signUpMessage: "User created successfully!"
       };
     case REGISTER_USER_FAILED:
       // console.log("from reducer",action.payload);
       return {
         ...state,
-        signUpError: action.payload.values,
+        // signUpError: action.payload.values,
+        signUpMessage:action.payload.values,
       };
     case LOGIN_USER:
       return {
@@ -78,6 +81,7 @@ const authReducer = (state = initialState, action) => {
         name: undefined,
         email: undefined,
         _id: undefined,
+        signUpMessage:undefined
       };
     default:
       break;
